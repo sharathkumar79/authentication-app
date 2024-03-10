@@ -12,6 +12,7 @@ const transporter = require('../utils/nodemailer');
 // Signup
 router.post('/signup', async (req, res) => {
     try {
+        // console.log(req);
       const { email, password } = req.body;
   
       // Check if the user already exists
@@ -45,6 +46,7 @@ router.post('/signup', async (req, res) => {
   
       res.status(201).json({ message: 'User created successfully. Check your email for verification.' });
     } catch (error) {
+        console.log("error");
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
     }

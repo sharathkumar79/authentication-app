@@ -9,25 +9,29 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Apply rate limiting middleware
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.',
-});
+// // Apply rate limiting middleware
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 100, // limit each IP to 100 requests per windowMs
+//   message: 'Too many requests from this IP, please try again later.',
+// });
 
-// Middleware
+// // Middleware
 
-app.use(limiter);
+// app.use(limiter);
 
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "script-src 'self'");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Content-Security-Policy', "script-src 'self'");
+//   next();
+// });
 
 
 app.use(cors());
 app.use(express.json());
+
+// app.use(() => {
+//   console.log("hello world");
+// })
 
 // Routes
 const authRoutes = require('./routes/Auth');
@@ -53,4 +57,3 @@ app.listen(PORT, () => {
 });
 
 
-module.exports = app;
